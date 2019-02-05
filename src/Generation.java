@@ -130,8 +130,37 @@ public class Generation {
     public boolean checkCorridor(int x, int y, int direction, int size){
         int width = roomWidth[1];
         int height = roomHeight[1];
-
-        if (direction == 0){
+        switch (direction){
+            case 0:
+                y-=(size+height);
+                x+=width;
+                if ((x>100)||(y<0)){
+                    return false;
+                }
+                return true;
+            case 1:
+                x+=(size+width);
+                y-=height;
+                if ((x>100)||(y<0)){
+                    return false;
+                }
+                return true;
+            case 2:
+                y+=(size+height);
+                x+=width;
+                if ((x>100)||(y>100)){
+                    return false;
+                }
+                return true;
+            case 3:
+                y-=height;
+                x-=(width+size);
+                if ((x>0)||(y>0)){
+                    return false;
+                }
+                return true;
+        }
+        /*if (direction == 0){
             y-=(size+height);
             x+=width;
             if ((x>100)||(y<0)){
@@ -162,7 +191,7 @@ public class Generation {
                 return false;
             }
             return true;
-        }
+        }*/
     }
     public boolean checkRoom(int x, int y, int direction, int size, int size2){
         //size = width size
