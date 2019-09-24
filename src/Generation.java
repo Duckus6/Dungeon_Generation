@@ -21,14 +21,12 @@ public class Generation {
         roomHeight[0] = constants.getMinHeight();
         roomHeight[1] = constants.getMaxHeight();
         totalRooms = constants.getTotalRooms();
-
     }
     // look up the unity c# one, start at one room then go around making a bunch of rooms.
     public int[] createCorridor(int x,int y,int direction){
         int size  = random.nextInt(corridorSize);
         int[] coords = new int[2];
         if (direction == 0){
-
             for (int i = 0; i<size; i++){
                 canvas[x][y-i] = 1;
                 if (size -i == 1){
@@ -67,6 +65,7 @@ public class Generation {
         return coords;
     }
     public int[] createRoom (int x, int y, int orientation){
+
         //different orientations for where spawned
         //orientation based on orientation of corridor
         //x,y are the coords of the end of the corridor
@@ -127,7 +126,7 @@ public class Generation {
         }
         return coords;
     }
-    public boolean checkCorridor(int x, int y, int direction, int size){
+    /*public boolean checkCorridor(int x, int y, int direction, int size){
         int width = roomWidth[1];
         int height = roomHeight[1];
         switch (direction){
@@ -191,24 +190,28 @@ public class Generation {
                 return false;
             }
             return true;
-        }*/
-    }
-    public boolean checkRoom(int x, int y, int direction, int size, int size2){
+        }
+    }*/
+    /*public boolean checkRoom(int x, int y, int direction, int size, int size2){
         //size = width size
         //size 2 = height size
 
-    }
+    }*/
     public void createDungeon(){
         //will need to add a 2nd point for if/when a rectangular canvas is made
         int centerpoint = (int) Math.ceil(constants.getCanvasDimensions()/2.0);
         int orientation = random.nextInt(4);
         int[] coords = new int[2];
+        int[] corCoords = new int[2];
+        int[] roomCoords = new int[2];
         coords[0] = centerpoint;
         coords[1] = centerpoint;
-        coords= createCorridor(coords[0],coords[1],orientation);
-        for (int i=0; i<totalRooms;i++){
+        corCoords = createCorridor(coords[0],coords[1],orientation);
+        roomCoords = createRoom(corCoords[0],corCoords[1],orientation);
 
-        }
+
+        /*for (int i=0; i<totalRooms;i++){
+        }*/
 
     }
 }

@@ -22,7 +22,7 @@ public  class ConstantsCanvas {
     private int corridorSize;
     private int totalRooms;
     public ConstantsCanvas() {
-        canvas = 100;
+        canvas = 12;
         minWidth = 1;
         maxWidth = 7;
         minHeight = 1;

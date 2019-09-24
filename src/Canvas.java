@@ -46,7 +46,7 @@ public class Canvas {
 
         //create board squares
         Insets buttonMargin = new Insets(0,0,0,0);
-        for (int ii = 0; ii < canvasSquares .length; ii++) {
+        for (int ii = 0; ii < canvasSquares.length; ii++) {
             for (int jj=0; jj<canvasSquares[ii].length;jj++){
                 JButton b = new JButton();
                 b.setMargin(buttonMargin);
