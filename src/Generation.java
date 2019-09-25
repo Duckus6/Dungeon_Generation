@@ -197,7 +197,7 @@ public class Generation {
         //size 2 = height size
 
     }*/
-    public void createDungeon(){
+    public int[][] createDungeon(){
         //will need to add a 2nd point for if/when a rectangular canvas is made
         int centerpoint = (int) Math.ceil(constants.getCanvasDimensions()/2.0);
         int orientation = random.nextInt(4);
@@ -208,11 +208,12 @@ public class Generation {
         coords[1] = centerpoint;
         corCoords = createCorridor(coords[0],coords[1],orientation);
         roomCoords = createRoom(corCoords[0],corCoords[1],orientation);
-
-
-        /*for (int i=0; i<totalRooms;i++){
-        }*/
-
+        for (int i=0; i<(totalRooms-1);i++){
+            orientation = random.nextInt(4);
+            corCoords = createCorridor(roomCoords[0],roomCoords[1],orientation);
+            roomCoords = createRoom(corCoords[0],corCoords[1],orientation);
+        }
+        return canvas;
     }
 }
 

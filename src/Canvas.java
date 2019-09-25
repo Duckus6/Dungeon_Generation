@@ -7,6 +7,8 @@ import javax.swing.border.LineBorder;
 public class Canvas {
     private Color background;
     private ConstantsCanvas constants;
+    private Generation generation;
+    private Color colCorridor;
     private Color walkable;
     private final JPanel gui;
     private JPanel canvas;
@@ -17,14 +19,17 @@ public class Canvas {
         constants = new ConstantsCanvas();
         background = constants.getWalls();
         walkable = constants.getFloor();
+        generation = new Generation();
+        colCorridor = constants.getCorridor();
         gui = new JPanel(new BorderLayout(3,3));
         SQUARECONSTANT = constants.getCanvasDimensions();
         canvasSquares = new JButton[SQUARECONSTANT][SQUARECONSTANT];
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         System.out.println(""+screenSize.getWidth()+"   "+screenSize.getHeight());
-        initialiseGUI();
+        int[][] genCanvas =  generation.createDungeon();
+        initialiseGUI(genCanvas);
     }
-    public final void initialiseGUI(){
+    public final void initialiseGUI(int[][] genCanvas){
         //set up the main GUI
         gui.setBorder(new EmptyBorder(5,5,5,5));
         JToolBar tools = new JToolBar();
@@ -63,8 +68,11 @@ public class Canvas {
 //                }else{
 //                    b.setBackground(background);
 //                }
-                if (jj == 0){
+                if (genCanvas[jj][ii] == 2){
                     b.setBackground(walkable);
+                }
+                else if(genCanvas[jj][ii] == 1 ){
+                    b.setBackground(colCorridor);
                 }
                 else{b.setBackground(background);}
                 canvasSquares[jj][ii] = b;
