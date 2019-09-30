@@ -20,18 +20,20 @@ public  class ConstantsCanvas {
     //color of floor/ interactable areas
     private Color floor;
     private Color corridor;
-    private int corridorSize;
+    private int minCorridor;
+    private int maxCorridor;
     private int totalRooms;
     public ConstantsCanvas() {
         canvas = 100;
         minWidth = 1;
-        maxWidth = 7;
+        maxWidth = 4;
         minHeight = 1;
         maxHeight = 4;
         walls = Color.black;
         floor = Color.white;
         corridor = Color.yellow;
-        corridorSize = 50;
+        minCorridor = 1;
+        maxCorridor = 8;
         totalRooms = 8;
     }
     //bunch of getters/accessors
@@ -57,9 +59,10 @@ public  class ConstantsCanvas {
         return floor;
     }
     public Color getCorridor(){return corridor;}
-    public int getCorridorSize(){
-        return corridorSize;
+    public int getMinCorridor(){
+        return minCorridor;
     }
+    public int getMaxCorridor(){return maxCorridor;}
     public int getTotalRooms(){
         return totalRooms;
         }
