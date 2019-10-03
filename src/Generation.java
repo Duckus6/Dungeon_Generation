@@ -6,19 +6,19 @@ public class Generation {
     private ConstantsCanvas constants;
     //0 = nothing, 1 = corridor, 2 = room
     private int[][] canvas;
-    private int maxCorridorSize;
-    private int minCorridorSize;
+    private int[] corridorSize;
     private Random random;
     private int totalRooms;
 
     public Generation(){
         constants = new ConstantsCanvas();
         canvas = new int[constants.getCanvasDimensions()][constants.getCanvasDimensions()];
-        maxCorridorSize = constants.getMaxCorridor();
-        minCorridorSize = constants.getMinCorridor();
         random = new Random();
         roomWidth = new int[2];
         roomHeight = new int[2];
+        corridorSize = new int[2];
+        corridorSize[0] = constants.getMinCorridor();
+        corridorSize[1] = constants.getMaxCorridor();
         roomWidth[0] = constants.getMinWidth();
         roomWidth[1] = constants.getMaxWidth();
         roomHeight[0] = constants.getMinHeight();
@@ -28,7 +28,7 @@ public class Generation {
     // look up the unity c# one, start at one room then go around making a bunch of rooms.
     //
     public int[] createCorridor(int x,int y,int direction){
-        int size  = minCorridorSize+random.nextInt(maxCorridorSize);
+        int size  = corridorSize[0]+random.nextInt(corridorSize[1]);
         int[] coords = new int[2];
         if (direction == 0){
             for (int i = 0; i<size; i++){
@@ -88,7 +88,7 @@ public class Generation {
                 }
             }
             coords[0]=x;
-            coords[1]=y -((int)Math.ceil(sizeHeight/2.0);
+            coords[1]=y -((int)Math.ceil(sizeHeight/2.0));
         }
         else if(orientation == 1){
             int i=0;
@@ -129,11 +129,25 @@ public class Generation {
         }
         return coords;
     }
-    public boolean checkCorridor(int x, int y, int orientation){
-        return true;
-    }
-    public boolean checkRoom(int x, int y,int orientation){
-        return true;
+    // checks if max size corridor + room can fit
+    //returns either bool if it can fit or orientation it does work in
+    //need to figure out if a room is bade on border middle what to do about room size
+    public boolean checkIteration(int x,int y, int orientation){
+
+        while (true){
+            switch(orientation){
+                case 0:
+                    y = y-corridorSize[1];
+
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+        }
+
     }
     public int[][] createDungeon(){
         //will need to add a 2nd point for if/when a rectangular canvas is made
