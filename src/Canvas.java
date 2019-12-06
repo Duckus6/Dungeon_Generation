@@ -34,16 +34,6 @@ public class Canvas {
         gui.setBorder(new EmptyBorder(5,5,5,5));
         JToolBar tools = new JToolBar();
         tools.setFloatable(false);
-        /*gui.add(tools,BorderLayout.PAGE_START);
-        tools.add(new JButton("New")); //notfin
-        tools.add(new JButton("save"));
-        tools.add(new JButton("Restore"));
-        tools.addSeparator();
-        tools.add(new JButton("Resign"));
-        tools.addSeparator();
-        tools.add(message);
-*/
-        //gui.add(new JLabel("?"), BorderLayout.LINE_START);
 
         canvas = new JPanel(new GridLayout(0,SQUARECONSTANT));
         canvas.setBorder(new LineBorder(Color.BLACK));
@@ -71,42 +61,37 @@ public class Canvas {
                 if (genCanvas[jj][ii] == 2){
                     b.setBackground(walkable);
                 }
-                else if(genCanvas[jj][ii] == 1 ){
+                else if(genCanvas[jj][ii] == 1){
                     b.setBackground(colCorridor);
                 }
                 else{b.setBackground(background);}
                 canvasSquares[jj][ii] = b;
             }
         }
-        //fill the black non-pawn piece row
         for (int ii = 0; ii<SQUARECONSTANT;ii++){
             for (int jj=0;jj<SQUARECONSTANT;jj++){
                 canvas.add(canvasSquares[jj][ii]);
             }
         }
     }
-    public final JComponent getChessBoard(){
-        return canvas;
-    }
+
     public final JComponent getGui(){
         return gui;
     }
     public static void main(String[] args){
-        Runnable r = new Runnable() {
-            @Override
-            public void run(){
-                Canvas cb = new Canvas();
-                JFrame f = new JFrame("Dungeon");
-                f.add(cb.getGui());
-                f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                f.setLocationByPlatform(true);
-                // ensures the frame is the minimum size it needs to be
-                // in order display the components within it
-                f.pack();
-                // ensures the minimum size is enforced.
-                f.setMinimumSize(f.getSize());
-                f.setVisible(true);
-            }
+        //Runnable r = new Runnable() {
+        Runnable r = () -> {
+            Canvas cb = new Canvas();
+            JFrame f = new JFrame("Dungeon");
+            f.add(cb.getGui());
+            f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            f.setLocationByPlatform(true);
+            // ensures the frame is the minimum size it needs to be
+            // in order display the components within it
+            f.pack();
+            // ensures the minimum size is enforced.
+            f.setMinimumSize(f.getSize());
+            f.setVisible(true);
         };
         SwingUtilities.invokeLater(r);
     }

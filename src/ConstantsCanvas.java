@@ -25,10 +25,10 @@ public  class ConstantsCanvas {
     private int totalRooms;
     public ConstantsCanvas() {
         canvas = 100;
-        minWidth = 1;
-        maxWidth = 4;
-        minHeight = 1;
-        maxHeight = 4;
+        minWidth = 3;
+        maxWidth = 8;
+        minHeight = 3;
+        maxHeight = 8;
         walls = Color.black;
         floor = Color.white;
         corridor = Color.yellow;
